@@ -15,9 +15,10 @@ class TodoController extends Controller
      */
     public function index()
     {
+        $number = "1";
         $title = "Todo App";
         $todos = Todo::all();
-        return view('todo.index', compact(['todos', 'title']));
+        return view('todo.index', compact(['todos', 'title', 'number']));
     }
 
     /**
@@ -40,7 +41,7 @@ class TodoController extends Controller
     public function store(TodoRequest $request)
     {
         Todo::create($request->validated());
-        return redirect('/');
+        return redirect('/todo')->with('created', 'Item created successfully!');
     }
 
     /**
@@ -51,7 +52,9 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = "Show task";
+        $todo = Todo::find($id);
+        return view('todo.show', compact('todo', 'title'));
     }
 
     /**
@@ -62,7 +65,9 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = "Edit task";
+        $todo = Todo::find($id);
+        return view('todo.edit', compact('todo', 'title'));
     }
 
     /**
@@ -72,9 +77,11 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->update($request->validated());
+        return redirect('/todo')->with('updated', 'Item updated successfully!');
     }
 
     /**
@@ -87,6 +94,6 @@ class TodoController extends Controller
     {
         $todo = Todo::find($id);
         $todo->delete();
-        return redirect('/');
+        return redirect('/todo')->with('deleted', 'Item deleted successfully!');
     }
 }
