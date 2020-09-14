@@ -4,11 +4,11 @@ Todo with Laravel is an application that allows to manage a list of tasks to do.
 
 ## Feel free to use the code
 
-Download the project and run `composer install`
-Then , `npm install` and `npm run dev`
-Copy ".env.example" content and paste in new ".env" file or run `cp .env.example .env`
-Generate key by `php artisan key:generate`
-Create a database and run 'php artisan migrate'
+1. Download the project and run `composer install`
+2. Then , `npm install` and `npm run dev`
+3. Copy ".env.example" content and paste in new ".env" file or run `cp .env.example .env`
+4. Generate key by `php artisan key:generate`
+5. Create a database and run `php artisan migrate`
 
 ## Live Project
 
